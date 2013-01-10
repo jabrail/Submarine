@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="V1.0">
+    <configurations>
+      <configuration name="V1.0" pure-as="true" main-class="Main" output-file="V10gh.swf" output-folder="$MODULE_DIR$/out/production/V1.0">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry library-id="75a48b1b-f6f3-40cb-a9c5-f13b8dfc6f51">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="898ea6e6-aa96-4b2c-8736-d68cd64cdd10">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="bd0124ab-2bf2-4417-8a56-62ae48707f06">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="77425384-56cc-4e1a-88df-2c0a3aa8a0e5">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="3751f659-a576-4813-942c-96922277221d">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="sdk" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="sdk" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="75a48b1b-f6f3-40cb-a9c5-f13b8dfc6f51" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/nape-debug.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="898ea6e6-aa96-4b2c-8736-d68cd64cdd10" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/nape-dev.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="bd0124ab-2bf2-4417-8a56-62ae48707f06" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/nape-hacks.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="77425384-56cc-4e1a-88df-2c0a3aa8a0e5" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/nape-release.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="3751f659-a576-4813-942c-96922277221d" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/nape-symbolic.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
+
