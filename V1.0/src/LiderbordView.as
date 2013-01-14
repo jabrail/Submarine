@@ -29,9 +29,11 @@ public class LiderbordView extends  Sprite implements Destroyer{
         setting_window.y = 50;
         textColor=0xFFFFFF;
 
-        if (shareobj.data.liderBord!=null)
-            shareobj.data.liderBord.push(new Array(1,1));
-
+        if (shareobj.data.liderBord==null)
+        {
+            shareobj.data.liderBord=new Array(1,1);
+            shareobj.flush();
+        }
         addChild(setting_window);
         var main_menu : Bitmap = new Asset.Main_menu;
         var main_menu_sprite : Sprite = new Sprite();
@@ -39,12 +41,18 @@ public class LiderbordView extends  Sprite implements Destroyer{
         main_menu_sprite.y = 600 - main_menu_sprite.height;
         addChild(main_menu_sprite);
         main_menu_sprite.addEventListener(MouseEvent.MOUSE_UP, main_menu_sprite_mouseUpHandler);
-        arrayLid = shareobj.data.liderBord;
 
-         /*   text  = new TextField();
-          text.text = arrayLid.toString();
-        setting_window.addChild(text);    */
+    //    shareobj.data.liderBord;
 
+        for (var i:int = 0; i<shareobj.data.liderBord.length;i++)
+        {
+            text  = new TextField();
+            text.y = i*20;
+            text.textColor = textColor;
+            text.text = shareobj.data.liderBord[i];
+            setting_window.addChild(text);
+            text=null;
+        }
 
 
 

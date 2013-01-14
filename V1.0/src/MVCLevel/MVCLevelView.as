@@ -1,7 +1,6 @@
 package MVCLevel
 {
 
-import Box2D.Collision.b2DynamicTreeNode;
 
 import MVCLevel.LayerCreate;
 
@@ -16,6 +15,7 @@ import flash.display.BitmapData;
 import flash.display.DisplayObject;
 
 import flash.display.DisplayObject;
+import flash.display.Loader;
 import flash.display.MovieClip;
 
 import flash.display.Shape;
@@ -30,6 +30,7 @@ import flash.geom.Point;
 import flash.net.SharedObject;
 import flash.text.TextField;
 import flash.text.TextFieldType;
+import flash.utils.ByteArray;
 import flash.utils.Timer;
 
 import nape.callbacks.CbEvent;
@@ -104,6 +105,8 @@ public class MVCLevelView extends Sprite  implements Destroyer
     private var arrayHitEnemy : Array = new Array();
     private var sharedobj :  SharedObject;
     private var point : int = 0;
+    private var movie : MovieClip   = new MovieClip();
+    private var loadVint : Loader;
 
     public var debug:Debug = new ShapeDebug(800, 600, 0xFFFFFF);
     public var speed : Number = 0;
@@ -160,6 +163,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
         liderbordName.addChild(liderbordInput);
         liderbordName.x = 800/2 - liderbordName.width/2;
         liderbordName.y = 600/2-liderbordName.height/2;
+
         var button : Button = new Button('Сохранить');
         button.x = 290 - button.width;
         button.y = 40;
@@ -176,7 +180,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
     {
         space.step(1 / 30.0);
         debug.clear();
-        //    debug.draw(space);
+            debug.draw(space);
         textPoint.text='Очки '+point;
         this.point=point;
         if (microphone_animate)
@@ -215,7 +219,8 @@ public class MVCLevelView extends Sprite  implements Destroyer
         body.position.x = 200;
         if (up!=0)
         {
-            body.applyImpulse(new Vec2(0,-50));
+          //  body.applyImpulse(new Vec2(0,-(body.position.y/4)));
+            body.velocity.set(new Vec2(0,-100));
         }
         if (life<0)
             dispatchEvent(new Event(Myevent.FEILD));
@@ -224,8 +229,8 @@ public class MVCLevelView extends Sprite  implements Destroyer
         if (layer_stone.x<(0-layer_stone.width+800))
         {
             addChild(liderbordName);
-            dispatchEvent(new Event(Event.COMPLETE))
-           // dispatchEvent(new Event(Myevent.LIDERBOARD))
+        //    dispatchEvent(new Event(Event.COMPLETE))
+            dispatchEvent(new Event(Myevent.LIDERBOARD))
 
         }
 
@@ -355,6 +360,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
         var objIso:DisplayObjectIso = new DisplayObjectIso(displobj);
         layer_ship.addChild(objIso.displayObject);
         var objBody:Body = IsoBody.run(objIso, objIso.bounds);
+
         layer_ship.removeChild(objIso.displayObject);
         body = cogBody.copy();
         body.position.setxy(400, 300);
@@ -362,10 +368,12 @@ public class MVCLevelView extends Sprite  implements Destroyer
         body.setShapeMaterials(mater);
         body.cbTypes.add(shiptype);
         var content : Sprite = new Sprite();
-        var movie : MovieClip = new Asset.Vint;
-        movie.x= (displobj as LayerCreate).image.x-movie.width/5-2;
-        movie.y=24;
         content.addChild(movie);
+        loadVint  = new Loader();
+        loadVint.loadBytes( new Asset.Vint as ByteArray);
+        loadVint.contentLoaderInfo.addEventListener(Event.INIT, onSwfLoaded_loadVint);
+
+
         content.addChild((displobj as LayerCreate).image);
         body.userData.graphic = content;
         layer_ship.addChild(body.userData.graphic);
@@ -653,7 +661,6 @@ public class MVCLevelView extends Sprite  implements Destroyer
         cb.int2.castBody.userData.graphic = bang;
         layer_enemy.addChild(cb.int2.castBody.userData.graphic);
         bang=null;
-
     }
     private function addCollisionListenerBonus(cb:InteractionCallback) : void
     {
@@ -667,6 +674,14 @@ public class MVCLevelView extends Sprite  implements Destroyer
 
         sharedobj.data.liderBord.push(new Array(liderbordInput.text,point));
         dispatchEvent(new Event(Event.COMPLETE));
+    }
+
+    private function onSwfLoaded_loadVint(event:Event):void {
+
+        movie = loadVint.content as MovieClip;
+        movie.play();
+        movie.x= 0;
+        movie.y=24;
 
     }
 }

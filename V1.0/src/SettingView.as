@@ -16,7 +16,6 @@ import flash.events.MouseEvent;
 import flash.net.SharedObject;
 import flash.text.TextField;
 
-import silin.zod.primitives.Sphere;
 
 
 public class SettingView extends Sprite implements Destroyer{

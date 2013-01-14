@@ -65,7 +65,6 @@ public class NavigationController extends Sprite{
         {
 
             levelSelect('start',menu);
-            addEventMenu(false);
         }
 
     }
@@ -157,7 +156,7 @@ public class NavigationController extends Sprite{
         {
             menu = new MVCMenuController();
             transition((event.target as DisplayObject),menu);
-            addEventMenu(true)
+
         }
     }
 
@@ -173,9 +172,9 @@ public class NavigationController extends Sprite{
             location = (event.target as LoadLocation).getDictLocation();
             arrayLocation = (event.target as LoadLocation).getArrayLocation();
             addChild(menu);
+            addEventMenu(true);
    /*         var cheto : Stats = new Stats();
              addChild(cheto);*/
-            addEventMenu(true);
 
         }
 
@@ -232,15 +231,14 @@ public class NavigationController extends Sprite{
     }
     private function  transition(firstObject : DisplayObject,secondObject : DisplayObject) : void
     {
-        var text : TextField = new TextField();
-        text.text = 'sdfdsfs';
-        addChild(text);
-        animate=true;
+
+        animate=false;
         transitionFirstObject=firstObject;
         transitionDisplayobjec = secondObject;
         transitionDisplayobjec.alpha = 0;
         addChild(transitionDisplayobjec);
-
+        if (firstObject is MVCMenuController)
+        addEventMenu(false);
         addEventListener(Event.ENTER_FRAME, enterFrameHandler);
         addEventListener(Myevent.TRANSITION_COMPLETE, transition_completeHandler);
 
@@ -248,6 +246,7 @@ public class NavigationController extends Sprite{
 
     private function enterFrameHandler(event:Event):void
     {
+        animate=false;
     //    transitionFirstObject.y+=20;
         transitionFirstObject.alpha-=0.033;
     //    transitionDisplayobjec.y+=20;
@@ -263,6 +262,10 @@ public class NavigationController extends Sprite{
         this.removeEventListener(Event.ENTER_FRAME,enterFrameHandler);
         (transitionFirstObject as Destroyer).destroy();
         removeChild(transitionFirstObject);
+        if (transitionDisplayobjec is MVCMenuController)
+        {
+            addEventMenu(true);
+        }
         transitionFirstObject = null;
         animate=true;
     }
@@ -276,7 +279,6 @@ public class NavigationController extends Sprite{
             (event.target as Destroyer).destroy();
             removeChild((event.target as DisplayObject));
             menu = new MVCMenuController();
-            addEventMenu(true);
             transition(level,menu);
         }
     }
@@ -315,6 +317,7 @@ public class NavigationController extends Sprite{
     }
     private function addEventMenu(type : Boolean) : void
     {
+
         if (type)
         {
             menu.addEventListener(Event.COMPLETE, menu_completeHandler);
@@ -360,7 +363,7 @@ public class NavigationController extends Sprite{
         {
 
             liderboarView = new LiderbordView();
-             liderboarView.addEventListener(Myevent.MAIN_MENU,main_menuHandler);
+            liderboarView.addEventListener(Myevent.MAIN_MENU,main_menuHandler);
             transition((menu),liderboarView);
         }
 

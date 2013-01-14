@@ -5,6 +5,8 @@ import avmplus.INCLUDE_ACCESSORS;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.DisplayObject;
+import flash.display.Loader;
+import flash.display.LoaderInfo;
 import flash.display.MovieClip;
 import flash.display.Shape;
 import flash.display.Sprite;
@@ -19,6 +21,7 @@ import flash.media.Sound;
 import flash.net.SharedObject;
 import flash.net.URLLoader;
 import flash.net.URLRequest;
+import flash.utils.ByteArray;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
 
@@ -42,11 +45,16 @@ public class MVCLevelController extends Sprite   implements Destroyer
     private var point : int = 0;
     private var timer : Timer = new Timer(30);
     private var sharedobj :SharedObject;
+    private var loader : Loader = new Loader();
+    private var currentArrayPos : Array = new Array();
+    private var currentIndexCoins : int=0;
+
 
     public var mic:Microphone  = Microphone.getMicrophone();
     public function MVCLevelController(levelName : String = 'DemoLevel')
     {
         sharedobj = SharedObject.getLocal('submarine')
+
 
         trace(levelName);
         allImgLoader = new LoaderImg(levelName);
@@ -141,19 +149,18 @@ public class MVCLevelController extends Sprite   implements Destroyer
         _view.addStone(layer);
 
         // добавление монеток
-        current_x =_width;
+          current_x =_width;
         var current_y :Number;
         for (var j :int =0;j<10;j++)
         {   current_x+= Math.random()*1000;
             current_y=Math.random()*300;
-        for (var i : int = 0; i<(Math.random()*20); i++)
-        {
-            var movie :MovieClip = new Asset.Coin;
-            movie.x = current_x;
-            current_x +=movie.width+Math.random()+20;
-            movie.y = current_y+Math.random()*30;
-            _view.addCoins(movie);
-        }
+            for (var i : int = 0; i<(Math.random()*20); i++)
+            {
+
+               currentArrayPos.push(new Point(current_x,current_y));
+               returnMovie('/Coins');
+
+            }
         }
 
         // слой кораблей противника
@@ -194,7 +201,9 @@ public class MVCLevelController extends Sprite   implements Destroyer
         if (allImgLoader.allLoad[dir])
         {
             var i : int = Math.random()*(allImgLoader.allLoad[dir].length-1);
-            return (allImgLoader.allLoad[dir][i]);
+            var bitm : BitmapData = new BitmapData((allImgLoader.allLoad[dir][i] as LoaderInfo).width,(allImgLoader.allLoad[dir][i] as LoaderInfo).height,true,0x00000000);
+            bitm.draw((allImgLoader.allLoad[dir][i] as LoaderInfo).loader);
+            return (bitm);
         }
         else
         {
@@ -202,6 +211,21 @@ public class MVCLevelController extends Sprite   implements Destroyer
         }
 
     }
+    private function returnMovie(dir : String) : void
+    {
+        if (allImgLoader.allLoad[dir])
+        {
+            var i : int = Math.random()*(allImgLoader.allLoad[dir].length-1);
+            var loader_wsf : Loader = new Loader();
+            loader_wsf.loadBytes((allImgLoader.allLoad[dir][i] as LoaderInfo).bytes);
+            loader_wsf.contentLoaderInfo.addEventListener(Event.INIT, onSwfLoaded);
+
+
+        }
+
+
+    }
+
 
 
 
@@ -336,6 +360,16 @@ public class MVCLevelController extends Sprite   implements Destroyer
 
     private function _view_LiderbordHandler(event:Event):void {
            gameStart =false;
+    }
+
+    private function onSwfLoaded(event:Event):void {
+        var movie : MovieClip = (event.target as LoaderInfo).loader.content as MovieClip;
+        movie.x = (currentArrayPos[currentIndexCoins] as Point).x+movie.width*currentIndexCoins;
+        (currentArrayPos[currentIndexCoins] as Point).x =movie.width+Math.random()+20;
+        movie.y = (currentArrayPos[currentIndexCoins] as Point).y+Math.random()*30;
+        _view.addCoins(movie);
+        currentIndexCoins++;
+
     }
 }
 }

@@ -9,6 +9,7 @@ package MVCLevel
 {
 import flash.display.BitmapData;
 import flash.display.Loader;
+import flash.display.LoaderInfo;
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.events.IOErrorEvent;
@@ -18,6 +19,7 @@ import flash.net.URLLoader;
 import flash.net.URLRequest;
 import flash.net.URLRequestMethod;
 import flash.net.URLVariables;
+import flash.utils.ByteArray;
 
 public class MyLoader   extends EventDispatcher
 {
@@ -80,10 +82,8 @@ public class MyLoader   extends EventDispatcher
 
 	private function completeHandler(event:Event):void
 	{
-		var bitmapdata : BitmapData;
-		bitmapdata = new BitmapData(event.target.loader.content.width,event.target.loader.content.height,true,0x000000);
-		bitmapdata.draw(event.target.loader.content);
-		outputArray.push(bitmapdata);
+        var loaderInfo:LoaderInfo = LoaderInfo(event.target);
+		outputArray.push(loaderInfo);
 		colloadcomplit++;
 		if (colloadcomplit==colload)
 		{

@@ -38,7 +38,7 @@ public class LoaderImg extends Sprite
 
 
         xmlImagesLoader  = new URLLoader();
-        var request : URLRequest = new URLRequest('http://runaway.afterwar.ru//submarine/games/locations/'+nameLevel+'/Setting.xml');
+        var request : URLRequest = new URLRequest('http://runaway.afterwar.ru/submarine/games/locations/'+nameLevel+'/Setting.xml');
         xmlImagesLoader.load(request);
         xmlImagesLoader.addEventListener(Event.COMPLETE,xmlImagesLoader_completeHandler);
         xmlImagesLoader.addEventListener(IOErrorEvent.IO_ERROR, xmlImagesLoader_ioErrorHandler);

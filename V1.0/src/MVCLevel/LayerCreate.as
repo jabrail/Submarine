@@ -10,7 +10,6 @@ package MVCLevel
 	import flash.geom.Point;
 	import flash.text.TextField;
 	
-	import silin.geom.FitLine;
 
 	public class LayerCreate extends Sprite
 	{
@@ -27,7 +26,6 @@ package MVCLevel
 		public var bitmap : Bitmap;
 		public var bitmapdata : BitmapData;
 		public var indexTraj : int = 0;
-		public var fitline : FitLine;
 		public var time : Number=0;
 		public var trajsost : Number=1;
 		public var bezier : Bezier;
@@ -43,7 +41,7 @@ package MVCLevel
 		}
 		public function enterFrame() : void
 		{
-			if (statusobj==0)
+		/*	if (statusobj==0)
 			{
 				if (flag==1)
 				{
@@ -81,7 +79,7 @@ package MVCLevel
 
 				}
 			}
-		}
+	*/	}
 		public function onMove() : void
 		{
 			this.flag=1;
@@ -95,7 +93,7 @@ package MVCLevel
 		public function trajectoryMove() : void
 		{
 			
-			massArray[0]=new Point(0,Math.random()*450);
+		/*	massArray[0]=new Point(0,Math.random()*450);
 			for (var m : int = 1; m<3;m++)
 			{
 				massArray[m] = new Point((m*300),((Math.random()*450)));
@@ -109,7 +107,8 @@ package MVCLevel
 			indexTraj = fitline.fitPoints.length;
 			trajsost=1;
 			this.visible=true;
-			}
+		*/
+        }
 		
 		
 		

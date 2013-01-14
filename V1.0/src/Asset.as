@@ -31,9 +31,9 @@ public class Asset {
     public static const  BackgroundMenu : Class;
     [Embed(source="images/button/lab.png")]
     public static const  Lab : Class;
-    [Embed(source="images/coin/coin.swf")]
+    [Embed(source="images/coin/coin.swf",mimeType="application/octet-stream")]
     public static const  Coin : Class;
-    [Embed(source="images/ship/Sub_vint.swf")]
+    [Embed(source="images/ship/Sub_vint.swf" ,mimeType="application/octet-stream")]
     public static const  Vint : Class;
     [Embed(source="images/help/help.jpg")]
     public static const  Help : Class;

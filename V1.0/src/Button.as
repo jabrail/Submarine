@@ -36,13 +36,17 @@ public class Button extends Sprite{
         var hover : Sprite = new Sprite();
         hover.graphics.beginFill(0x000000,0.01);
         hover.graphics.drawRoundRect(0,0,background.width,background.height,5,5);
-
+        text.x = hover.width/2-text.width/2;
+        text.y = hover.height/2-text.height/2;
+        text.border=1;
+        text.mouseEnabled =false;
         addChild(background);
         addChild(text);
         addChild(hover);
+
  //       hover.addEventListener(MouseEvent.MOUSE_MOVE,mouseMoveHandler);
  //       hover.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
-        hover.addEventListener(MouseEvent.MOUSE_UP, hover_mouseUpHandler)
+        hover.addEventListener(MouseEvent.CLICK, hover_mouseUpHandler)
         rotationZ=0;
 //        this.transform.matrix3D.appendRotation(-30,new Vector3D(0,1,0), new Vector3D(0,0,0));
 
