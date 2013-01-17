@@ -6,11 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 package {
-import MVCLevel.LevelFeild;
-import MVCLevel.LevelFeild;
-import MVCLevel.LevelFeild;
-import MVCLevel.LevelSelect;
+import Menu.HelpView;
+import Menu.LevelFeild;
+import Menu.LevelFeild;
+import Menu.LevelFeild;
+import Menu.LevelSelect;
 import MVCLevel.MVCLevelController;
+
+import Menu.LiderbordView;
+import Menu.MVCMenuController;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
@@ -50,33 +54,26 @@ public class NavigationController extends Sprite{
 
     public function NavigationController()  {
         var location_f : LoadLocation = new LoadLocation();
-        location_f.addEventListener(Event.COMPLETE, location_completeHandler)
-
+        location_f.addEventListener(Event.COMPLETE, location_completeHandler);
         var background : Bitmap = new Asset.BackgroundMenu;
         addChild(background);
-
-
     }
 
     private function menu_completeHandler(event:Event):void
     {
         if (animate)
-
         {
-
             levelSelect('start',menu);
         }
-
     }
 
 
     private function level_completeHandler(event:Event):void
     {
         if (animate)
-
         {
             level.gameStart=false;
-     addEventLevel(false);
+            addEventLevel(false);
 
             if (location[arrayLocation[0]][currentLevel+1]!=null)
             {
@@ -92,7 +89,6 @@ public class NavigationController extends Sprite{
     private function level_feilHandler(event:Event):void
     {
         if (animate)
-
         {
             levelfeild = new LevelFeild();
             levelfeild.addEventListener(Myevent.MAIN_MENU, levelfeild_main_menuHandler);
@@ -100,14 +96,11 @@ public class NavigationController extends Sprite{
             level.gameStart=false;
             addChild(levelfeild);
             addEventLevel(false);
-
-
         }
     }
     private function levelSelect(type : String,causedobject : DisplayObject) : void
     {
         if (animate)
-
         {
             selectLevel= new LevelSelect(arrayLocation[0],location[arrayLocation[0]],type);
             selectLevel.addEventListener(Event.COMPLETE, selectLevel_completeHandler);
@@ -121,64 +114,52 @@ public class NavigationController extends Sprite{
     private function selectLevel_completeHandler(event:Event):void
     {
         if (animate)
-
         {
             addChild((event.target as LevelSelect));
             currentLevel = (event.target as LevelSelect).selected;
 
 
             level = new MVCLevelController(arrayLocation[0]+'/'+location[arrayLocation[0]][currentLevel]);
-           addEventLevel(true);
+            addEventLevel(true);
             addChild(level);
             selectLevel.addEventListener(Event.COMPLETE, selectLevel_completeHandler);
             selectLevel.addEventListener(Myevent.RESTART,restartHandler);
             selectLevel.addEventListener(Myevent.MAIN_MENU,main_menuHandler);
             selectLevel.addEventListener(Myevent.NEXT, nextHandler);
             this.removeChild((event.target as LevelSelect));
-
         }
     }
     private function restartHandler(event:Event):void
     {
         if (animate)
-
         {
             restart_level(event.target as DisplayObject);
         }
     }
 
-
-
     private function main_menuHandler(event:Event):void
     {
         if (animate)
-
         {
             menu = new MVCMenuController();
             transition((event.target as DisplayObject),menu);
-
         }
     }
-
-
-
 
     private function location_completeHandler(event:Event):void
     {
         if (animate)
-
         {
             menu = new  MVCMenuController();
             location = (event.target as LoadLocation).getDictLocation();
             arrayLocation = (event.target as LoadLocation).getArrayLocation();
             addChild(menu);
             addEventMenu(true);
-   /*         var cheto : Stats = new Stats();
+            /*         var cheto : Stats = new Stats();
              addChild(cheto);*/
-
         }
-
     }
+
     private function restart_level(object : DisplayObject) : void
     {
         if (animate)
@@ -196,15 +177,13 @@ public class NavigationController extends Sprite{
             currentLevel++;
             level = new MVCLevelController(arrayLocation[0]+'/'+location[arrayLocation[0]][currentLevel]);
             transition((event.target as DisplayObject),level);
-       addEventLevel(true)
-
+            addEventLevel(true);
         }
     }
 
     private function level_pauseHandler(event:Event):void
     {
         if (animate)
-
         {
             level.gameStart =false;
             var pause : PauseView = new PauseView(_width,_height,'complete');
@@ -214,13 +193,11 @@ public class NavigationController extends Sprite{
             pause.addEventListener(Myevent.CONTINUE, pause_continueHandler);
             pause = null;
         }
-
     }
 
     private function pause_continueHandler(event:Event):void
     {
         if (animate)
-
         {
             removeChild(event.target as PauseView);
             (event.target as DisplayObject).removeEventListener(Myevent.MAIN_MENU,main_menuHandler_pause);
@@ -231,25 +208,23 @@ public class NavigationController extends Sprite{
     }
     private function  transition(firstObject : DisplayObject,secondObject : DisplayObject) : void
     {
-
         animate=false;
         transitionFirstObject=firstObject;
         transitionDisplayobjec = secondObject;
         transitionDisplayobjec.alpha = 0;
         addChild(transitionDisplayobjec);
         if (firstObject is MVCMenuController)
-        addEventMenu(false);
+            addEventMenu(false);
         addEventListener(Event.ENTER_FRAME, enterFrameHandler);
         addEventListener(Myevent.TRANSITION_COMPLETE, transition_completeHandler);
-
     }
 
     private function enterFrameHandler(event:Event):void
     {
         animate=false;
-    //    transitionFirstObject.y+=20;
+        //    transitionFirstObject.y+=20;
         transitionFirstObject.alpha-=0.033;
-    //    transitionDisplayobjec.y+=20;
+        //    transitionDisplayobjec.y+=20;
         transitionDisplayobjec.alpha+=0.033;
         if (transitionDisplayobjec.alpha>1)
         {

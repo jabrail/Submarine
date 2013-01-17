@@ -2,17 +2,10 @@ package MVCLevel
 {
 
 
-import MVCLevel.LayerCreate;
 
-import MVCLevel.LayerCreate;
 
 import flash.Boot;
-
 import flash.display.Bitmap;
-
-import flash.display.Bitmap;
-import flash.display.BitmapData;
-import flash.display.DisplayObject;
 
 import flash.display.DisplayObject;
 import flash.display.Loader;
@@ -21,38 +14,27 @@ import flash.display.MovieClip;
 import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.Event;
-import flash.events.Event;
-import flash.events.EventPhase;
 import flash.events.MouseEvent;
-import flash.events.TimerEvent;
-import flash.filters.DisplacementMapFilter;
-import flash.geom.Point;
+
 import flash.net.SharedObject;
 import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.utils.ByteArray;
-import flash.utils.Timer;
 
 import nape.callbacks.CbEvent;
 
 import nape.callbacks.CbType;
-import nape.callbacks.CbTypeIterator;
-import nape.callbacks.CbTypeList;
+
 import nape.callbacks.InteractionCallback;
 import nape.callbacks.InteractionListener;
 import nape.callbacks.InteractionType;
 
-import nape.constraint.PivotJoint;
 import nape.dynamics.InteractionFilter;
-import nape.geom.AABB;
-import nape.geom.GeomPolyList;
-import nape.geom.MarchingSquares;
-import nape.geom.Vec2;
+
 
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.phys.BodyType;
-import nape.phys.Material;
 import nape.phys.Material;
 import nape.shape.Circle;
 import nape.shape.Polygon;
@@ -60,12 +42,7 @@ import nape.shape.Polygon;
 import nape.space.Space;
 import nape.util.Debug;
 import nape.util.ShapeDebug;
-import nape.geom.IsoFunction
 
-import org.osmf.events.TimeEvent;
-
-import zpp_nape.callbacks.ZPP_CbType;
-import zpp_nape.util.ZPP_CbTypeList;
 
 public class MVCLevelView extends Sprite  implements Destroyer
 {
@@ -107,9 +84,15 @@ public class MVCLevelView extends Sprite  implements Destroyer
     private var point : int = 0;
     private var movie : MovieClip   = new MovieClip();
     private var loadVint : Loader;
+    private var pauseViewStatus : Boolean = false;
+    private var bonusMagnitstaus : Boolean = false;
+    public var mapLength : Number=0;
+    private var mapStatus: MapStatus;
+    private var pauseButtonView : LevelButtonView = new LevelButtonView();
+
 
     public var debug:Debug = new ShapeDebug(800, 600, 0xFFFFFF);
-    public var speed : Number = 0;
+    public var speed : Number = 13;
 
 
     public function MVCLevelView()
@@ -118,7 +101,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
 
         this.visible = false;
 
-       sharedobj = SharedObject.getLocal('submarine');
+        sharedobj = SharedObject.getLocal('submarine');
         var background : Bitmap  = new Asset.background;
         addChild(background);
         addChild(layer_remote);
@@ -132,108 +115,67 @@ public class MVCLevelView extends Sprite  implements Destroyer
         addChild(layer_coins);
         addChild(layer_enemy);
         addChild(layer_ship);
-
-
-        textPoint.text = 'Очки 0';
-        textPoint
-        textPoint.x = 700-textPoint.width;
-        addChild(textPoint);
-        // добавление блока жизней и блока уровня громкости
-        lifeBlock.graphics.beginFill(0x00ff00,0.6);
-        lifeBlock.graphics.drawRoundRect(0,0,230,5,5);
-        addChild(lifeBlock);
-        lifeBlock.x=30;
-        lifeBlock.y=30;
-        micBlock.graphics.beginFill(0x00ff00,0.6);
-        micBlock.graphics.drawRoundRect(0,0,5,200,5);
-        addChild(micBlock);
-        micBlock.x=30;
-        micBlock.y=570;
-        micBlock.rotationZ=180;
-
-
-        liderbordName.graphics.beginFill(0xFF9922);
-        liderbordName.graphics.drawRoundRect(0,0,300,80,10);
-        liderbordInput.type = TextFieldType.INPUT;
-        liderbordInput.border=true;
-        liderbordInput.width=280;
-        liderbordInput.height=30;
-        liderbordInput.x = 10;
-        liderbordInput.y = 5;
-        liderbordName.addChild(liderbordInput);
-        liderbordName.x = 800/2 - liderbordName.width/2;
-        liderbordName.y = 600/2-liderbordName.height/2;
-
+        addDetectedBur();
         var button : Button = new Button('Сохранить');
         button.x = 290 - button.width;
         button.y = 40;
         button.height=20;
         button.addEventListener(Event.COMPLETE, button_completeHandler)
         liderbordName.addChild(button);
-
-
-
-
     }
 
     public function update(point : int) : void
     {
-        space.step(1 / 30.0);
-        debug.clear();
-            debug.draw(space);
-        textPoint.text='Очки '+point;
-        this.point=point;
-        if (microphone_animate)
+        if (pauseViewStatus)
         {
-            microphone_s.rotationZ+=10;
-            microphon_sum++;
-            if ((microphon_sum)==18)
+            for (var i:int =0; i <layer_coins.numChildren;i++)
             {
-                microphon_sum=0;
-                microphone_animate=false;
+                ((layer_coins.getChildAt(i) as Sprite).getChildAt(0) as MovieClip).play();
             }
         }
+        space.step(1 / 30.0);
+        debug.clear();
+        //    debug.draw(space);
+        textPoint.text='Очки '+point;
+        this.point=point;
 
         sleep_shape();
 
-        layer_plant.x-=10;
-        layer_remote.x-=8;
-        layer_buble.x-=10;
-        vis_validate(layer_enemy,1);
-        vis_validate(layer_coins,1);
-        vis_validate(layer_plant,1);
-        vis_validate(layer_remote,2);
-        vis_validate(layer_stone,1);
-
+        layer_plant.x-=speed;
+        layer_remote.x-=speed-2;
+        layer_buble.x-=speed;
+        vis_validate(layer_plant);
+        vis_validate(layer_remote);
 
         for (var i : int = 0; i<layer_buble.numChildren; i++)
         {
             (layer_buble.getChildAt(i) as BubbleView).update();
         }
-
-
-
-
-
         _graphicUpdate(body);
-        body.position.x = 200;
+        body.position.x = 100;
         if (up!=0)
         {
-          //  body.applyImpulse(new Vec2(0,-(body.position.y/4)));
-            body.velocity.set(new Vec2(0,-100));
+            body.velocity.set(new Vec2(0,-200));
+            movie.play();
         }
-        if (life<0)
-            dispatchEvent(new Event(Myevent.FEILD));
-
-
+        else
+        {
+            movie.stop();
+            body.velocity.set(new Vec2(0,100));
+        }
         if (layer_stone.x<(0-layer_stone.width+800))
         {
             addChild(liderbordName);
-        //    dispatchEvent(new Event(Event.COMPLETE))
-            dispatchEvent(new Event(Myevent.LIDERBOARD))
-
+            dispatchEvent(new Event(Myevent.LIDERBOARD));
         }
-
+        if (life<0)
+        {
+            dispatchEvent(new Event(Myevent.FEILD));
+            for (var i:int =0; i <layer_coins.numChildren;i++)
+            {
+                ((layer_coins.getChildAt(i) as Sprite).getChildAt(0) as MovieClip).stop();
+            }
+        }
         if (life<40)
         {   lifeBlock.graphics.clear();
             lifeBlock.graphics.beginFill(0xff0000,0.6);
@@ -242,7 +184,6 @@ public class MVCLevelView extends Sprite  implements Destroyer
         }
 
         lifeBlock.width=life*2;
-
 
         var random : int = Math.random()*15;
         if (random==7)
@@ -254,23 +195,14 @@ public class MVCLevelView extends Sprite  implements Destroyer
             buble.addEventListener(Event.COMPLETE, layer_buble_completeHandler);
             buble=null;
         }
-        for (var i : int = 0; i<coins_numchildren.length;i++)
+
+        bonusMagnitstaus = true;
+        if (bonusMagnitstaus)
         {
-            (coins_numchildren[i] as Body).position.y-=5;
-            (coins_numchildren[i] as Body).position.x+=5;
-            (coins_numchildren[i] as Body).space=null;
-
-            (coins_numchildren[i] as Body).userData.graphic.alpha-=0.1;
-            if ((coins_numchildren[i] as Body).userData.graphic.alpha<0)
-            {
-                (coins_numchildren[i] as Body).userData.graphic.visible = false;
-                (coins_numchildren[i] as Body).space=null;
-            }
-
+            coinAnimates(1);
         }
         this.visible = true;
     }
-
 
     public function addEnemy(displobj : DisplayObject) : void
     {
@@ -353,17 +285,15 @@ public class MVCLevelView extends Sprite  implements Destroyer
     }
     public function addShip(displobj : DisplayObject) : void
     {
-
         var mater : Material = new Material(0,0,0,1);
         var cogIso:BitmapDataIso = new BitmapDataIso((displobj as LayerCreate).image.bitmapData, 0x80);
         var cogBody:Body = IsoBody.run(cogIso, cogIso.bounds);
         var objIso:DisplayObjectIso = new DisplayObjectIso(displobj);
         layer_ship.addChild(objIso.displayObject);
         var objBody:Body = IsoBody.run(objIso, objIso.bounds);
-
         layer_ship.removeChild(objIso.displayObject);
         body = cogBody.copy();
-        body.position.setxy(400, 300);
+        body.position.setxy(300, 100);
         body.space = space;
         body.setShapeMaterials(mater);
         body.cbTypes.add(shiptype);
@@ -373,75 +303,34 @@ public class MVCLevelView extends Sprite  implements Destroyer
         loadVint.loadBytes( new Asset.Vint as ByteArray);
         loadVint.contentLoaderInfo.addEventListener(Event.INIT, onSwfLoaded_loadVint);
 
-
         content.addChild((displobj as LayerCreate).image);
         body.userData.graphic = content;
         layer_ship.addChild(body.userData.graphic);
         body.allowRotation = false;
 
-        var pause_button : Bitmap = new Asset.Pause;
-        var pause_sparite : Sprite = new Sprite()
-        pause_sparite.addChild(pause_button);
-        addChild(pause_sparite);
-        pause_sparite.x= 800-pause_sparite.width-30;
-        pause_sparite.addEventListener(MouseEvent.MOUSE_UP, pause_sparite_mouseUpHandler);
-
-        var microphone : Bitmap = new Asset.Microphone;
-        microphone_s.addChild(microphone);
-        microphone.width=70;
-        microphone.height=70;
-        addChild(microphone_s);
-        microphone.x =0-microphone.width/2;
-        microphone.y = 0-microphone.height/2;
-        microphone_s.x= 800-microphone_s.width/2-30;
-        microphone_s.y= pause_sparite.height+30+microphone.height/2;
-        microphone_s.addEventListener(MouseEvent.MOUSE_UP, microphone_s_mouseUpHandler);
-
-        var ground:Body = new Body(BodyType.STATIC); // Земля
-        ground.shapes.add(new Polygon(Polygon.rect(0, 600, 1000, 100), Material.ice()));
-        ground.space = space;
-        var ground_buttom:Body = new Body(BodyType.STATIC); // Земля
-        ground_buttom.shapes.add(new Polygon(Polygon.rect(0, 0, 800, 2), Material.ice()));
-        var mater11 : Material = new Material(0,0.1,2,1);
-        ground_buttom.setShapeMaterials(mater11);
-        ground_buttom.space = space;
-
-
-
-        var ground_left:Body = new Body(BodyType.STATIC); // Земля
-        ground_left.shapes.add(new Polygon(Polygon.rect(0, 0, 1, 600), Material.ice(), new InteractionFilter(0x000000001, 0x000000010)));
-        ground_left.space = space;
-        addChild(debug.display);
-        body.setShapeFilters(new InteractionFilter(0x000000011, 0x000000001));
-
-        var beginCollideListener:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, otherObject, addCollisionListener);
-        var beginCollideListenerBonus:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, bonusObject, addCollisionListenerBonus);
-        var beginCollideListenerEnemy:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, enemyCbType, addCollisionListenerEnemy);
-        space.listeners.add(beginCollideListener);
-        space.listeners.add(beginCollideListenerBonus);
-        space.listeners.add(beginCollideListenerEnemy);
-
-
+        addButton();
+        addGrounds();
+        mapStatus=new MapStatus(mapLength);
+        mapStatus.x = 400;
+        mapStatus.y = 30;
+        addChild(mapStatus);
     }
     public function shipUp(value : Number) :void
     {
-
-        if (value<6)
-        {
-            up = 0;
-            valueUp=3;
-
-        }
-        else
-        {
-            valueUp=value-6;
-            up = 1;
-
-        }
+        up = 1;
+    }
+    public function shipDown(value : Number) :void
+    {
+        up = 0;
     }
 
     private function pause_sparite_mouseUpHandler(event:MouseEvent):void
     {
+        for (var i:int =0; i <layer_coins.numChildren;i++)
+        {
+            ((layer_coins.getChildAt(i) as Sprite).getChildAt(0) as MovieClip).stop();
+        }
+        pauseViewStatus = true;
         dispatchEvent(new Event(Myevent.PAUSE));
     }
 
@@ -449,13 +338,12 @@ public class MVCLevelView extends Sprite  implements Destroyer
     {
         (event.target as Sprite).removeEventListener(Event.COMPLETE,layer_buble_completeHandler);
         layer_buble.removeChild((event.target as Sprite));
-
-
     }
 
     private function microphone_s_mouseUpHandler(event:MouseEvent):void
     {
-        microphone_animate = true;
+
+        pauseButtonView.animateMicro();
         dispatchEvent(new Event(Myevent.MICROPHONE_EVENT))
     }
 
@@ -464,41 +352,25 @@ public class MVCLevelView extends Sprite  implements Destroyer
         dispatchEvent(new Event(Myevent.COINS));
         (event.target as DisplayObject).removeEventListener(Myevent.COINS,CoinsHandler);
     }
-    private function vis_validate(object : DinamicLayer, type: int) : void
+    private function vis_validate(object : DinamicLayer) : void
     {
         for (var i : int = 0; i<object.numChildren;i++)
         {
-            if (type==1)
+            if (((object.getChildAt(i).x)-Math.abs(object.x))<(0-object.getChildAt(i).width))
             {
-                if (((object.getChildAt(i).x)-Math.abs(object.x))<-200)
-                {
-                    object.removeChildAt(i)
-                }
-                else if (((object.getChildAt(i).x)-Math.abs(object.x))>1000)
-                {
-                    object.getChildAt(i).visible=false;
-                }
-                else
-                {
-                    object.getChildAt(i).visible=true;
-                }
+                object.removeChildAt(i)
+            }
+            else if (((object.getChildAt(i).x)-Math.abs(object.x))>1000)
+            {
+                object.getChildAt(i).visible=false;
             }
             else
             {
-                if (((object.getChildAt(i).x)-Math.abs(object.x))<-800)
-                {
-                    object.removeChildAt(i);
-                }
-                else if (((object.getChildAt(i).x)-Math.abs(object.x))>1000)
-                {
-                    object.getChildAt(i).visible=false;
-                }
-                else
-                {
-                    object.getChildAt(i).visible=true;
-                }
+                object.getChildAt(i).visible=true;
             }
         }
+
+
     }
     public function destroy(): void
     {
@@ -529,10 +401,10 @@ public class MVCLevelView extends Sprite  implements Destroyer
     {
         for (var i : int =0;i<array.length;i++)
         {
-            if (layer_coin_Array_Body[i]!=null)
+            if (array[i]!=null)
             {
-                (layer_coin_Array_Body[i] as Body).userData.graphic = null;
-                layer_coin_Array_Body[i] = null;
+                (array[i] as Body).userData.graphic = null;
+                array[i] = null;
             }
         }
     }
@@ -563,88 +435,24 @@ public class MVCLevelView extends Sprite  implements Destroyer
     }
     private function sleep_shape(): void
     {
-        for (var i : int = 0;i<layer_enemy_Array_Body.length;i++)
-        {
-            (layer_enemy_Array_Body[i] as Body).velocity.set(new Vec2(-500,0));
-            _graphicUpdate((layer_enemy_Array_Body[i] as Body));
-            if ((layer_enemy_Array_Body[i] as Body).position.x<-200)
-            {
-                (layer_enemy_Array_Body[i] as Body).space = null;
-                (layer_enemy_Array_Body[i] as Body).userData.graphic.visible = false;
-            }
-            else if ((layer_enemy_Array_Body[i] as Body).position.x>800)
-            {
-                (layer_enemy_Array_Body[i] as Body).space = null;
-                (layer_enemy_Array_Body[i] as Body).position.x-=15;
-                (layer_enemy_Array_Body[i] as Body).userData.graphic.visible = false;
-            }
-            else
-            {
-                (layer_enemy_Array_Body[i] as Body).space=space;
-                (layer_enemy_Array_Body[i] as Body).userData.graphic.visible = true;
-            }
-
-        }
+        validateBody(layer_enemy_Array_Body,speed,-(speed*50));
+        var col : int=0;
+        var __width : Number=0;
+        validateBody(layer_stone_Array_Body,speed,-(speed*30))
         for (var i : int = 0;i<layer_stone_Array_Body.length;i++)
         {
-            _graphicUpdate((layer_stone_Array_Body[i] as Body));
-
-            if ((layer_stone_Array_Body[i] as Body).position.x<-200)
-            {
-                (layer_stone_Array_Body[i] as Body).userData.graphic.visible = false;
-                (layer_stone_Array_Body[i] as Body).space = null;
-
-            }
-            else if ((layer_stone_Array_Body[i] as Body).position.x>800)
-            {
-                (layer_stone_Array_Body[i] as Body).space = null;
-                (layer_stone_Array_Body[i] as Body).position.x-=10;
-                (layer_stone_Array_Body[i] as Body).userData.graphic.visible = false;
-            }
-            else
-            {
-
-                (layer_stone_Array_Body[i] as Body).space=space;
-                (layer_stone_Array_Body[i] as Body).userData.graphic.visible = true;
-                (layer_stone_Array_Body[i] as Body).velocity.set(new Vec2(-300,0));
-                _graphicUpdate((layer_stone_Array_Body[i] as Body));
-            }
-
-        }
-
-
-        for (var i : int = 0;i<layer_coin_Array_Body.length;i++)
-        {
-            _graphicUpdate((layer_coin_Array_Body[i] as Body));
-
-            if ((layer_coin_Array_Body[i] as Body).position.x<-200)
-            {
-                (layer_coin_Array_Body[i] as Body).userData.graphic.visible = false;
-                (layer_coin_Array_Body[i] as Body).space = null;
-
-            }
-            else if ((layer_coin_Array_Body[i] as Body).position.x>800)
-            {
-                (layer_coin_Array_Body[i] as Body).space = null;
-                (layer_coin_Array_Body[i] as Body).position.x-=10;
-                (layer_coin_Array_Body[i] as Body).userData.graphic.visible = false;
-            }
-            else
-            {
-
-                (layer_coin_Array_Body[i] as Body).space=space;
-                (layer_coin_Array_Body[i] as Body).userData.graphic.visible = true;
-                (layer_coin_Array_Body[i] as Body).velocity.set(new Vec2(-300,0));
-                _graphicUpdate((layer_coin_Array_Body[i] as Body));
+            if ((layer_stone_Array_Body[i] as Body).position.x<(0-(layer_stone_Array_Body[i] as Body).bounds.width))
+            {   col++;
+                __width=(layer_stone_Array_Body[i] as Body).bounds.width;
             }
         }
+        mapStatus.update(__width,col);
+        validateBody(layer_coin_Array_Body,(speed-4),-(speed*30));
         for (i=0; i<arrayHitEnemy.length;i++)
         {
             (arrayHitEnemy[i] as Body).space=null;
             (arrayHitEnemy[i] as Body).position.x-=10;
         }
-
-
     }
     public function addCollisionListener(cb:InteractionCallback):void
     {
@@ -664,7 +472,6 @@ public class MVCLevelView extends Sprite  implements Destroyer
     }
     private function addCollisionListenerBonus(cb:InteractionCallback) : void
     {
-
         cb.int2.castBody.space = null;
         coins_numchildren.push(cb.int2);
         dispatchEvent( new Event(Myevent.COINS));
@@ -672,18 +479,147 @@ public class MVCLevelView extends Sprite  implements Destroyer
 
     private function button_completeHandler(event:Event):void {
 
-        sharedobj.data.liderBord.push(new Array(liderbordInput.text,point));
+        sharedobj.data.liderBord=(new Array(liderbordInput.text,point));
         dispatchEvent(new Event(Event.COMPLETE));
     }
 
     private function onSwfLoaded_loadVint(event:Event):void {
 
         movie = loadVint.content as MovieClip;
-        movie.play();
-        movie.x= 0;
+        movie.stop();
+        movie.x= -33;
         movie.y=24;
+        body.userData.graphic.addChild(movie);
+    }
+    private function addButton() : void {
+
+        pauseButtonView.addEventListener(Myevent.PAUSELEVELVIEW, pause_sparite_mouseUpHandler);
+        pauseButtonView.addEventListener(Myevent.MICROOFF, microphone_s_mouseUpHandler);
+        addChild(pauseButtonView);
+    }
+    private function addGrounds() : void {
+
+        var ground:Body = new Body(BodyType.STATIC); // Земля
+        ground.shapes.add(new Polygon(Polygon.rect(0, 602, 2000, 100), Material.ice()));
+        ground.space = space;
+        var ground_buttom:Body = new Body(BodyType.STATIC); // Земля
+        ground_buttom.shapes.add(new Polygon(Polygon.rect(0, 0, 2000, 2), Material.ice()));
+        var mater11 : Material = new Material(0,0.1,2,1);
+        ground_buttom.setShapeMaterials(mater11);
+        ground_buttom.space = space;
+
+        addChild(debug.display);
+        body.setShapeFilters(new InteractionFilter(0x000000011, 0x000000001));
+
+        var beginCollideListener:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, otherObject, addCollisionListener);
+        var beginCollideListenerBonus:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, bonusObject, addCollisionListenerBonus);
+        var beginCollideListenerEnemy:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, enemyCbType, addCollisionListenerEnemy);
+        space.listeners.add(beginCollideListener);
+        space.listeners.add(beginCollideListenerBonus);
+        space.listeners.add(beginCollideListenerEnemy);
+    }
+    private function bonusMagnit(): void
+    {
+        bonusMagnitstaus = true;
+    }
+    private function coinAnimates(type : int) : void
+    {
+        if (type == 0)
+        {
+            for (var i : int = 0; i<coins_numchildren.length;i++)
+            {
+                (coins_numchildren[i] as Body).position.y-=5;
+                (coins_numchildren[i] as Body).position.x+=5;
+                (coins_numchildren[i] as Body).space=null;
+
+                (coins_numchildren[i] as Body).userData.graphic.alpha-=0.1;
+                if ((coins_numchildren[i] as Body).userData.graphic.alpha<0)
+                {
+                    (coins_numchildren[i] as Body).userData.graphic.visible = false;
+                    (coins_numchildren[i] as Body).space=null;
+                }
+            }
+        }
+        else  if (type==1)
+        {
+
+            for (var i : int = 0; i<layer_coin_Array_Body.length;i++)
+            {
+                if ((layer_coin_Array_Body[i] as Body).position.x<600)
+                {
+                    (layer_coin_Array_Body[i] as Body).position.x=(layer_coin_Array_Body[i] as Body).position.x-((layer_coin_Array_Body[i] as Body).position.x-(body.position.x + body.bounds.width))/10;
+                    (layer_coin_Array_Body[i] as Body).position.y=(layer_coin_Array_Body[i] as Body).position.y-((layer_coin_Array_Body[i] as Body).position.y-(body.position.y+body.bounds.height/2))/10;
+                    (layer_coin_Array_Body[i] as Body).space=null;
+
+                    (layer_coin_Array_Body[i] as Body).userData.graphic.alpha-=0.06;
+                    if ((layer_coin_Array_Body[i] as Body).userData.graphic.alpha<0)
+                    {
+                        (layer_coin_Array_Body[i] as Body).userData.graphic.visible = false;
+                        (layer_coin_Array_Body[i] as Body).userData.graphic = null;
+                        (layer_coin_Array_Body[i] as Body).space=null;
+                        layer_coin_Array_Body.splice(i, 1);
+                        dispatchEvent( new Event(Myevent.COINS));
+                    }
+                }
+            }
+        }
 
     }
-}
+    private function validateBody(array : Array,_speed1 : Number,_speed2: Number): void
+    {
+        for (var i : int = 0;i<array.length;i++)
+        {
+            _graphicUpdate((array[i] as Body));
 
+            if ((array[i] as Body).position.x<(0-(array[i] as Body).bounds.width))
+            {
+                (array[i] as Body).userData.graphic.visible = false;
+                (array[i] as Body).space = null;
+
+            }
+            else if ((array[i] as Body).position.x>800)
+            {
+                (array[i] as Body).space = null;
+                (array[i] as Body).position.x-=_speed1;
+                (array[i] as Body).userData.graphic.visible = false;
+            }
+            else
+            {
+
+                (array[i] as Body).space=space;
+                (array[i] as Body).userData.graphic.visible = true;
+                (array[i] as Body).velocity.set(new Vec2(_speed2,0));
+                _graphicUpdate((array[i] as Body));
+            }
+        }
+    }
+    private function addDetectedBur():void {
+        textPoint.text = 'Очки 0';
+        textPoint
+        textPoint.x = 700-textPoint.width;
+        addChild(textPoint);
+        lifeBlock.graphics.beginFill(0x00ff00,0.6);
+        lifeBlock.graphics.drawRoundRect(0,0,230,5,5);
+        addChild(lifeBlock);
+        lifeBlock.x=30;
+        lifeBlock.y=30;
+        micBlock.graphics.beginFill(0x00ff00,0.6);
+        micBlock.graphics.drawRoundRect(0,0,5,200,5);
+        addChild(micBlock);
+        micBlock.x=30;
+        micBlock.y=570;
+        micBlock.rotationZ=180;
+        liderbordName.graphics.beginFill(0xFF9922);
+        liderbordName.graphics.drawRoundRect(0,0,300,80,10);
+        liderbordInput.type = TextFieldType.INPUT;
+        liderbordInput.border=true;
+        liderbordInput.width=280;
+        liderbordInput.height=30;
+        liderbordInput.x = 10;
+        liderbordInput.y = 5;
+        liderbordName.addChild(liderbordInput);
+        liderbordName.x = 800/2 - liderbordName.width/2;
+        liderbordName.y = 600/2-liderbordName.height/2;
+    }
+}
 }

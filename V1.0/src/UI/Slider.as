@@ -37,7 +37,7 @@ public class Slider extends Sprite {
      track.y = 10;
 
      box.graphics.beginFill(_textColor);
-     box.graphics.drawRect(0,0,3,12);
+     box.graphics.drawRect(0,0,6,12);
      box.y=5;
      box.x = customPos;
 

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/MVCLevel/MVCLevelView.as" line="198" />
+    <bookmark url="file://$PROJECT_DIR$/src/MVCLevel/MVCLevelView.as" line="143" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9711995c-8326-43ae-8b2e-b36562f9ec67" name="Default" comment="" />
     <ignored path="V1.0.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.js2" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357731513957" ignored="false" />
+    <file path="/fragment.js2" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358412924572" ignored="false" />
     <file path="/Main.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1355136432117" ignored="false" />
-    <file path="/MVCLevelController.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358169625721" ignored="false" />
+    <file path="/MVCLevelController.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358421180712" ignored="false" />
     <file path="/MVCLaavelView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1354103211455" ignored="false" />
     <file path="/MyLoader.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358159289607" ignored="false" />
     <file path="/LoaderImg.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1355479017627" ignored="false" />
     <file path="/LevelSetting.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1354267755832" ignored="false" />
-    <file path="/MVCLevelView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358155688014" ignored="false" />
+    <file path="/MVCLevelView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358421126072" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/catalog.xsd" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1354527425475" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-transitional.xsd" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1354527425475" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/XMLSchema.xsd" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1354527425475" ignored="false" />
@@ -356,10 +356,10 @@
     <file path="/NavigationController.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357983343607" ignored="false" />
     <file path="/Menu.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1355398795332" ignored="false" />
     <file path="/levelFaild.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1355148471136" ignored="false" />
-    <file path="/Myevent.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357732638101" ignored="false" />
+    <file path="/Myevent.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358419338778" ignored="false" />
     <file path="/LevelFeild.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357478304713" ignored="false" />
     <file path="/LoadLocation.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1355321489033" ignored="false" />
-    <file path="/Asset.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357659667166" ignored="false" />
+    <file path="/Asset.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358407859923" ignored="false" />
     <file path="/PauseView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1356089148133" ignored="false" />
     <file path="/BubbleView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357470714422" ignored="false" />
     <file path="/MenuView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1355578009405" ignored="false" />
@@ -379,6 +379,8 @@
     <file path="/Liderbord.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357739926442" ignored="false" />
     <file path="/LiderbordView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357988827099" ignored="false" />
     <file path="/Preloader.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1357915438783" ignored="false" />
+    <file path="/MapStatus.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358411775689" ignored="false" />
+    <file path="/LevelButtonView.as" changelist="9711995c-8326-43ae-8b2e-b36562f9ec67" time="1358419467191" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,94 +442,89 @@
       <file leaf-file-name="MVCLevelView.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MVCLevel/MVCLevelView.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="8" selection-start="5685" selection-end="5685" vertical-scroll-proportion="0.0">
+            <state line="158" column="25" selection-start="4982" selection-end="4982" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#21#49#0" expanded="true" />
+                <element signature="e#23#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MVCLevelController.as" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MVCLevelController.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MVCLevel/MVCLevelController.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="366" column="95" selection-start="11089" selection-end="11089" vertical-scroll-proportion="0.832853">
-              <folding>
-                <element signature="e#19#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoaderImg.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MVCLevel/LoaderImg.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyLoader.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MVCLevel/MyLoader.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="0" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#174#206#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Asset.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Asset.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="73" selection-start="1429" selection-end="1429" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LiderbordView.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LiderbordView.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="44" selection-start="1780" selection-end="1780" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Preloader.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Preloader.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="36" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.0">
+            <state line="321" column="122" selection-start="9567" selection-end="9567" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="LevelSelectElement.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelSelectElement.as">
+        <entry file="file://$PROJECT_DIR$/src/Menu/LevelSelectElement.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="33" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+            <state line="23" column="21" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Button.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Button.as">
+      <file leaf-file-name="LevelSetting.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelSetting.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="21" selection-start="3558" selection-end="3558" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyLoader.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MVCLevel/MyLoader.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="109" column="80" selection-start="3824" selection-end="3824" vertical-scroll-proportion="0.5037037">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NavigationController.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/NavigationController.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="332" column="32" selection-start="11560" selection-end="11560" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LevelComplete.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Menu/LevelComplete.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LevelFeild.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Menu/LevelFeild.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="LevelSelect.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelSelect.as">
+        <entry file="file://$PROJECT_DIR$/src/Menu/LevelSelect.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="32" selection-start="3725" selection-end="3731" vertical-scroll-proportion="0.0">
+            <state line="125" column="42" selection-start="4041" selection-end="4041" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -543,22 +540,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/MVCMenuController.as" />
-        <option value="$PROJECT_DIR$/src/Liderbord.as" />
-        <option value="$PROJECT_DIR$/src/MVCMenuView.as" />
-        <option value="$PROJECT_DIR$/src/Myevent.as" />
-        <option value="$PROJECT_DIR$/src/MVCLevel/LevelSelectElement.as" />
         <option value="$PROJECT_DIR$/src/SettingView.as" />
         <option value="$PROJECT_DIR$/src/MVCLevel/LayerCreate.as" />
         <option value="$PROJECT_DIR$/src/Button.as" />
         <option value="$PROJECT_DIR$/src/LiderbordView.as" />
         <option value="$PROJECT_DIR$/src/Preloader.as" />
-        <option value="$PROJECT_DIR$/src/NavigationController.as" />
-        <option value="$PROJECT_DIR$/src/Asset.as" />
         <option value="$PROJECT_DIR$/src/MVCLevel/MyLoader.as" />
-        <option value="$PROJECT_DIR$/src/MVCLevel/MVCLevelView.as" />
         <option value="$PROJECT_DIR$/src/MVCLevel/LoaderImg.as" />
+        <option value="$PROJECT_DIR$/src/Asset.as" />
+        <option value="$PROJECT_DIR$/src/MapStatus.as" />
+        <option value="$PROJECT_DIR$/src/UI/Slider.as" />
+        <option value="$PROJECT_DIR$/src/Myevent.as" />
+        <option value="$PROJECT_DIR$/src/MVCLevel/LevelButtonView.as" />
+        <option value="$PROJECT_DIR$/src/MVCLevel/MVCLevelView.as" />
         <option value="$PROJECT_DIR$/src/MVCLevel/MVCLevelController.as" />
+        <option value="$PROJECT_DIR$/src/NavigationController.as" />
+        <option value="$PROJECT_DIR$/src/MenuController.as" />
       </list>
     </option>
   </component>
@@ -596,6 +593,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -628,27 +626,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MVCLevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Tests" />
       </pane>
@@ -662,7 +641,7 @@
     <property name="options.lastSelected" value="appearance" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../box2d2" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -670,17 +649,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
+      <recent name="MVCLevel" />
       <recent name="" />
       <recent name="UI" />
-      <recent name="MVCLevel" />
       <recent name="MVCLavel" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\devel\hhhh\Submarine\V1.0\src\MVCLevel" />
+      <recent name="E:\devel\hhhh\Submarine\V1.0\src\Menu" />
       <recent name="E:\devel\V1.0\src" />
       <recent name="E:\devel\V1.0\src\MVCLevel" />
     </key>
@@ -785,6 +766,42 @@
       <option name="moduleName" value="V1.0" />
       <option name="overriddenMainClass" value="UI.Slider" />
       <option name="overriddenOutputFileName" value="Slider.swf" />
+      <option name="overrideMainClass" value="true" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <RunnerSettings RunnerId="FlexRunner" />
+      <ConfigurationWrapper RunnerId="FlexRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="MapStatus" type="FlashRunConfigurationType" factoryName="Flash App" temporary="true">
+      <option name="BCName" value="V1.0" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browserFamily" value="FIREFOX" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="V1.0" />
+      <option name="overriddenMainClass" value="MVCLevel.MapStatus" />
+      <option name="overriddenOutputFileName" value="MapStatus.swf" />
       <option name="overrideMainClass" value="true" />
       <option name="runTrusted" value="true" />
       <option name="screenDpi" value="0" />
@@ -938,17 +955,19 @@
       <ConfigurationWrapper RunnerId="FlexRunner" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Flash App.V1.0" />
       <item index="1" class="java.lang.String" itemvalue="Flash App.Main" />
       <item index="2" class="java.lang.String" itemvalue="Flash App.Checkbox" />
       <item index="3" class="java.lang.String" itemvalue="Flash App.Slider" />
+      <item index="4" class="java.lang.String" itemvalue="Flash App.MapStatus" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Flash App.Slider" />
-        <item index="1" class="java.lang.String" itemvalue="Flash App.Checkbox" />
-        <item index="2" class="java.lang.String" itemvalue="Flash App.Main" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Flash App.MapStatus" />
+        <item index="1" class="java.lang.String" itemvalue="Flash App.Slider" />
+        <item index="2" class="java.lang.String" itemvalue="Flash App.Checkbox" />
+        <item index="3" class="java.lang.String" itemvalue="Flash App.Main" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1004,18 +1023,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17717206" sideWeight="0.45944503" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32764506" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15814444" sideWeight="0.21245828" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15860015" sideWeight="0.69335604" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30664396" sideWeight="0.4551761" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15860015" sideWeight="0.67291313" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30153322" sideWeight="0.4551761" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15814444" sideWeight="0.07341491" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26517573" sideWeight="0.5410886" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2640545" sideWeight="0.5410886" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1023,7 +1043,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32739422" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.389755" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1090,7 +1109,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="149" />
+      <option name="time" value="151" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1098,81 +1117,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Myevent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="34" selection-start="935" selection-end="935" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MVCMenuController.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="57" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MVCLevel/LayerCreate.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#20#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MVCMenuView.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="36" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SettingView.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="23" selection-start="4135" selection-end="4135" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NavigationController.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="68" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Button.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="21" selection-start="3558" selection-end="3558" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelSelect.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="32" selection-start="3725" selection-end="3731" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Asset.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="73" selection-start="1429" selection-end="1429" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LiderbordView.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="44" selection-start="1780" selection-end="1780" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MVCLevel/MyLoader.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#174#206#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MVCLevel/LoaderImg.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="60" column="0" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
@@ -1180,34 +1124,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preloader.as">
+    <entry file="file://$PROJECT_DIR$/src/Asset.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="36" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.0">
+        <state line="45" column="31" selection-start="1863" selection-end="1863" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MVCLevel/MapStatus.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="57" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#174#202#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Slider.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="77" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Myevent.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="34" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelButtonView.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="65" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#174#202#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MVCLevel/MVCLevelView.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="8" selection-start="5685" selection-end="5685" vertical-scroll-proportion="0.0">
+        <state line="158" column="25" selection-start="4982" selection-end="4982" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#21#49#0" expanded="true" />
+            <element signature="e#23#41#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelSelectElement.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="33" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MVCLevel/MVCLevelController.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="366" column="95" selection-start="11089" selection-end="11089" vertical-scroll-proportion="0.832853">
+        <state line="321" column="122" selection-start="9567" selection-end="9567" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NavigationController.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="332" column="32" selection-start="11560" selection-end="11560" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu/LevelComplete.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#19#52#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu/LevelFeild.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu/LevelSelect.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="42" selection-start="4041" selection-end="4041" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu/LevelSelectElement.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="21" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MVCLevel/LevelSetting.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MVCLevel/MyLoader.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="80" selection-start="3824" selection-end="3824" vertical-scroll-proportion="0.5037037">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

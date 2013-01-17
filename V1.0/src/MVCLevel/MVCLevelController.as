@@ -54,8 +54,6 @@ public class MVCLevelController extends Sprite   implements Destroyer
     public function MVCLevelController(levelName : String = 'DemoLevel')
     {
         sharedobj = SharedObject.getLocal('submarine')
-
-
         trace(levelName);
         allImgLoader = new LoaderImg(levelName);
         addChild(allImgLoader);
@@ -68,7 +66,7 @@ public class MVCLevelController extends Sprite   implements Destroyer
         {
             onMicStatus2();
         }
-    //    mic.setUseEchoSuppression(true);
+        //    mic.setUseEchoSuppression(true);
         mic.addEventListener(SampleDataEvent.SAMPLE_DATA, onMicActivity);
         allImgLoader.addEventListener(Event.COMPLETE, allImgLoader_completeHandler);
         _view = new MVCLevelView();
@@ -76,7 +74,7 @@ public class MVCLevelController extends Sprite   implements Destroyer
     public function enterFrame(e:Event) : void
     {
         if (gameStart)
-        _view.update(point);
+            _view.update(point);
     }
 
     public function up(act:Number):void
@@ -88,8 +86,7 @@ public class MVCLevelController extends Sprite   implements Destroyer
     }
     private function allImgLoader_completeHandler(event:Event):void
     {
-
-
+        _view.mapLength=allImgLoader.allLoad['length'];
         var layer : LayerCreate;
         removeChild(allImgLoader);
         // третий план
@@ -101,24 +98,22 @@ public class MVCLevelController extends Sprite   implements Destroyer
         var len : int = allImgLoader.allLoad['length']/layer.width;
         for (var i : int = 0; i<len; i++)
         {
-             layer  = new LayerCreate(randomImg('/ThirdPlace'),0);
+            layer  = new LayerCreate(randomImg('/ThirdPlace'),0);
             layer.x = current_x;
             current_x +=layer.width;
             _view.addRemote(layer);
         }
 
-         layer  = new LayerCreate(randomImg('/ThirdPlace/2'),0);
+        layer  = new LayerCreate(randomImg('/ThirdPlace/2'),0);
         layer.x = current_x;
         current_x +=layer.width;
         _view.addRemote(layer);
-
-
         // второй план
         current_x  =0;
         numberBarries = allImgLoader.allLoad['length']/randomImg('/SecondPlace').width;
         for (var i : int = 0; i<numberBarries; i++)
         {
-             layer  = new LayerCreate(randomImg('/SecondPlace'),0);
+            layer  = new LayerCreate(randomImg('/SecondPlace'),0);
             layer.x = current_x;
             layer.y = _height-layer.height;
             current_x +=layer.width;
@@ -127,7 +122,7 @@ public class MVCLevelController extends Sprite   implements Destroyer
 
         // слой камней
         current_x =0;
-         layer  = new LayerCreate(randomImg('/Stone/1'),0);
+        layer  = new LayerCreate(randomImg('/Stone/1'),0);
         layer.x = current_x;
         current_x +=layer.width;
         layer.y = _height -layer.height;
@@ -135,46 +130,47 @@ public class MVCLevelController extends Sprite   implements Destroyer
         numberBarries = allImgLoader.allLoad['length']/layer.width;
         for (var i : int = 0; i<numberBarries; i++)
         {
-             layer  = new LayerCreate(randomImg('/Stone'),0);
+            layer  = new LayerCreate(randomImg('/Stone'),0);
             layer.x = current_x;
             current_x +=layer.width;
             layer.y = _height -layer.height;
             _view.addStone(layer);
         }
 
-         layer  = new LayerCreate(randomImg('/Stone/2'),0);
+        layer  = new LayerCreate(randomImg('/Stone/2'),0);
         layer.x = current_x;
         current_x +=layer.width;
         layer.y = _height -layer.height;
         _view.addStone(layer);
 
+
         // добавление монеток
-          current_x =_width;
+        current_x =_width;
         var current_y :Number;
-        for (var j :int =0;j<10;j++)
+        for (var j :int =0;j<30;j++)
         {   current_x+= Math.random()*1000;
             current_y=Math.random()*300;
             for (var i : int = 0; i<(Math.random()*20); i++)
             {
 
-               currentArrayPos.push(new Point(current_x,current_y));
-               returnMovie('/Coins');
-
+                currentArrayPos.push(new Point(current_x,current_y));
+                returnMovie('/Coins');
             }
         }
-
         // слой кораблей противника
         current_x =_width;
         numberEnemies = allImgLoader.allLoad['numEnemy'];
         for (var i : int = 0; i<numberEnemies; i++)
         {
             layer  = new LayerCreate(randomImg('/Enemy'),0);
-            layer.x = current_x;
-            current_x +=layer.width+Math.random()*900+300;
-            layer.y = Math.random()*350;
-            _view.addEnemy(layer);
+            if (layer!=null)
+            {
+                layer.x = current_x;
+                current_x +=layer.width+Math.random()*100 + allImgLoader.allLoad['length']/numberEnemies;
+                layer.y = Math.random()*350;
+                _view.addEnemy(layer);
+            }
         }
-
 
         layer  = new LayerCreate(randomImg('/Ship'),0);
         layer.x=100;
@@ -188,12 +184,11 @@ public class MVCLevelController extends Sprite   implements Destroyer
         _view.addEventListener(Myevent.MICROPHONE_EVENT, _view_microphoneHandler);
         _view.addEventListener(Myevent.COINS, _view_CoinsHandler);
         _view.addEventListener(Myevent.LIDERBOARD, _view_LiderbordHandler)
-        gameStart=true;
         stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
-         stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+        stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
         timer.start();
         timer.addEventListener(TimerEvent.TIMER, enterFrame);
-
+        gameStart=true;
     }
 
     private function randomImg(dir : String) : BitmapData
@@ -207,10 +202,11 @@ public class MVCLevelController extends Sprite   implements Destroyer
         }
         else
         {
-            return (new BitmapData(100,100));
+            return null;
         }
 
     }
+
     private function returnMovie(dir : String) : void
     {
         if (allImgLoader.allLoad[dir])
@@ -226,12 +222,9 @@ public class MVCLevelController extends Sprite   implements Destroyer
 
     }
 
-
-
-
     private function _view_completeHandler(event:Event):void
     {
-     dispatchEvent(new Event(Event.COMPLETE));
+        dispatchEvent(new Event(Event.COMPLETE));
     }
     public function onMicStatus(event:StatusEvent):void
     {
@@ -255,44 +248,45 @@ public class MVCLevelController extends Sprite   implements Destroyer
         }
 
     }
+
     public function onMicActivity(e:SampleDataEvent) : void
     {
 
-            var a:Number = 0;
-            var num:int = 0;
-            //samples.writeBytes(e.data);
-            if(e.data==null)
-            {
-                return;
-            }
-            while(e.data.bytesAvailable)
-            {
-                var sample:Number = e.data.readFloat();
+        var a:Number = 0;
+        var num:int = 0;
+        //samples.writeBytes(e.data);
+        if(e.data==null)
+        {
+            return;
+        }
+        while(e.data.bytesAvailable)
+        {
+            var sample:Number = e.data.readFloat();
 
 
-                sample = Math.abs(sample);
-                a+=sample;
-                num++;
-            }
+            sample = Math.abs(sample);
+            a+=sample;
+            num++;
+        }
 
 
-            if ((200 * (a/num))>3)
-            {
-                up(200 * (a/num));
-            }
+        if ((200 * (a/num))>3)
+        {
+            up(200 * (a/num));
+        }
 
 
     }
+
     public function onMicStatus2():void
     {
         trace(micUnmut);
         if (micUnmut)
         {
-           micActive=1;
+            micActive=1;
 
         }
     }
-
 
     private function _view_FEILDHandler(event:Event):void
     {
@@ -304,17 +298,14 @@ public class MVCLevelController extends Sprite   implements Destroyer
         dispatchEvent(new Event(Myevent.PAUSE))
     }
 
-
-
     private function keyDownHandler(event:KeyboardEvent):void
     {
-        _view.shipUp(12);
+        _view.shipUp(0);
     }
 
     private function keyUpHandler(event:KeyboardEvent):void
     {
-        _view.shipUp(0);
-
+        _view.shipDown(0);
     }
     private function _view_microphoneHandler(event:Event):void
     {
@@ -354,12 +345,11 @@ public class MVCLevelController extends Sprite   implements Destroyer
         mic.removeEventListener(StatusEvent.STATUS,onMicStatus);
         allImgLoader = null;
         for (var i : int = 0; i<numChildren;i++)
-        removeChildAt(i);
+            removeChildAt(i);
     }
 
-
     private function _view_LiderbordHandler(event:Event):void {
-           gameStart =false;
+        gameStart =false;
     }
 
     private function onSwfLoaded(event:Event):void {
@@ -369,7 +359,6 @@ public class MVCLevelController extends Sprite   implements Destroyer
         movie.y = (currentArrayPos[currentIndexCoins] as Point).y+Math.random()*30;
         _view.addCoins(movie);
         currentIndexCoins++;
-
     }
 }
 }

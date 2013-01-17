@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="V1.0">
     <configurations>
-      <configuration name="V1.0" pure-as="true" main-class="Main" output-file="V10gh.swf" output-folder="$MODULE_DIR$/out/production/V1.0">
+      <configuration name="V1.0" pure-as="true" main-class="Main" output-file="submarine.swf" output-folder="$MODULE_DIR$/out/production/V1.0">
         <dependencies target-player="11.1">
           <entries>
             <entry library-id="75a48b1b-f6f3-40cb-a9c5-f13b8dfc6f51">

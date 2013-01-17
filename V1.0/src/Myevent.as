@@ -22,6 +22,8 @@ public class Myevent extends EventDispatcher{
     public static const COINS :String = 'Coins';
     public static const RETING :String = 'Reting';
     public static const LIDERBOARD :String = 'Liderbord';
+    public static const PAUSELEVELVIEW :String = 'PAUSELEVELVIEW';
+    public static const MICROOFF :String = 'MICROOFF';
 
     public function Myevent() {
     }

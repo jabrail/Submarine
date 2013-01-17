@@ -39,6 +39,10 @@ public class Asset {
     public static const  Help : Class;
     [Embed(source="images/ship/Sub_bang.swf")]
     public static const  Bang : Class;
+    [Embed(source="images/game components/map.png")]
+    public static const Map : Class;
+    [Embed(source="images/game components/cursor.PNG")]
+    public static const  Cursor : Class;
     public function Asset() {
     }
 }
