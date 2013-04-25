@@ -20,7 +20,7 @@ public class LevelSetting  extends EventDispatcher
     public function LevelSetting(level : String)
     {
   /*      var loadset = new Loader();
-        var url : URLRequest = new URLRequest('http://runaway.afterwar.ru/submarine/games/images/'+level+'setting.xml');
+        var url : URLRequest = new URLRequest(UrlSettings.mainUrl+'/submarine/games/images/'+level+'setting.xml');
         loadset.load(url);
         loadset.addEventListener(Event.COMPLETE, loadset_completeHandler);*/
 

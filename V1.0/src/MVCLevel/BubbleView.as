@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package MVCLevel {
+import GameComponets.loaders.Asset;
+
 import flash.display.Bitmap;
 import flash.display.Sprite;
 import flash.events.Event;

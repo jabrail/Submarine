@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package MVCLevel {
+import nape.dynamics.InteractionFilter;
 import nape.geom.AABB;
 import nape.geom.GeomPoly;
 import nape.geom.GeomPolyList;
@@ -20,7 +21,7 @@ import flash.display.BitmapData;
 import flash.display.DisplayObject;
 
    public class IsoBody {
-    public static function run(iso:IsoFunction, bounds:AABB, granularity:Vec2=null, quality:int=2, simplification:Number=1.5):Body {
+    public static function run(iso:IsoFunction, bounds:AABB, granularity:Vec2=null, quality:int=2, simplification:Number=1.5,interfilter : InteractionFilter = null):Body {
         var body:Body = new Body();
 
         if (granularity==null) granularity = Vec2.weak(8, 8);
@@ -32,7 +33,7 @@ import flash.display.DisplayObject;
             for (var j:int = 0; j < qolys.length; j++) {
                 var q:GeomPoly = qolys.at(j);
 
-                body.shapes.add(new Polygon(q));
+                body.shapes.add(new Polygon(q,null,interfilter));
 
                 // Recycle GeomPoly and its vertices
                 q.dispose();

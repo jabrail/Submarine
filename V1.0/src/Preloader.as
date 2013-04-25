@@ -1,20 +1,14 @@
-package
-{
+package {
 
-import flash.display.AVM1Movie;
+
 import flash.display.DisplayObject;
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.display.Sprite;
 import flash.events.Event;
-import flash.events.ProgressEvent;
-import flash.net.URLRequest;
 import flash.text.TextField;
 import flash.utils.ByteArray;
 import flash.utils.getDefinitionByName;
-
-import mx.core.FlexMovieClip;
-import mx.core.SpriteAsset;
 
 
 [SWF(width="807", height="600",frameRate="60")]
@@ -29,10 +23,15 @@ public class Preloader extends MovieClip
 
     [Embed(source="images/preloader.swf", mimeType="application/octet-stream")]
     public var  preloader_data : Class;
+    [Embed(source="images/elum.swf", mimeType="application/octet-stream")]
+    public var  preloader_hover : Class;
+
 
     private var mcPreloader: MovieClip;
+    private var mcPreloader_hover: MovieClip;
 
     public var loader:Loader = new Loader();
+    public var loader_hover:Loader = new Loader();
 
     public function Preloader()
     {
@@ -47,6 +46,8 @@ public class Preloader extends MovieClip
 
         loader.loadBytes( new preloader_data() as ByteArray );
         loader.contentLoaderInfo.addEventListener(Event.INIT, onSwfLoaded);
+        loader_hover.loadBytes( new preloader_hover() as ByteArray );
+        loader_hover.contentLoaderInfo.addEventListener(Event.INIT, onSwfLoaded_hover);
         this.addChild(loader);
         this.addEventListener(Event.ENTER_FRAME, enterFrameHandler)
 
@@ -64,10 +65,12 @@ public class Preloader extends MovieClip
     public function enterFrameHandler(event:Event):void
     {
         var percent : int = Math.round(loaderInfo.bytesLoaded/loaderInfo.bytesTotal*100);
-            if (mcPreloader!=null)
-            {
-            mcPreloader.nextFrame();
-            }
+        if (mcPreloader!=null)
+        {
+            var per : int =   mcPreloader.totalFrames/100*percent;
+            mcPreloader.gotoAndStop(per);
+
+        }
 
         if (loaderInfo.bytesLoaded==loaderInfo.bytesTotal)
         {
@@ -80,5 +83,13 @@ public class Preloader extends MovieClip
         }
 
     }
+
+    private function onSwfLoaded_hover(event:Event):void {
+        mcPreloader_hover = loader_hover.content as MovieClip;
+        mcPreloader_hover.play();
+        addChild(mcPreloader_hover);
+    }
+
+
 }
 }

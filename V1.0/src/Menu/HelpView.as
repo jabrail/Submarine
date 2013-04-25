@@ -6,10 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 package Menu {
+import GameComponets.loaders.Asset;
+
+import Othe.Myevent;
+
 import flash.display.Bitmap;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+
+import implementation.Destroyer;
 
 public class HelpView extends Sprite implements Destroyer{
     public function HelpView() {

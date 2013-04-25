@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 package Menu {
+import GameComponets.loaders.Asset;
+
+import Othe.Myevent;
+
 import flash.display.Bitmap;
 import flash.display.Shader;
 import flash.display.Sprite;
@@ -13,6 +17,8 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.net.SharedObject;
 import flash.text.TextField;
+
+import implementation.Destroyer;
 
 public class LiderbordView extends  Sprite implements Destroyer{
     private var shareobj : SharedObject = SharedObject.getLocal('submarine');

@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package UI {
+import GameComponets.loaders.TextFormats;
+
 import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.text.TextField;
@@ -32,6 +34,7 @@ public class Checkbox extends Sprite{
 
         box.x = 0;
         box.y = 5;
+        this.text.defaultTextFormat=TextFormats.textFormat_1;
         this.text.text=text;
         this.text.x = box.width+5;
         this.text.y = 0;

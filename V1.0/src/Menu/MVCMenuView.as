@@ -6,10 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 package Menu {
+import Othe.Button;
+import Othe.Myevent;
+
 import flash.display.Bitmap;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+
+import implementation.Destroyer;
 
 public class MVCMenuView extends Sprite  implements Destroyer
 {
@@ -21,6 +26,11 @@ public class MVCMenuView extends Sprite  implements Destroyer
             var button : Button = new Button(array[i]);
             button.y = i*button.height+30*i+40;
             button.x = 40;
+            if (array[i]=='Старт')
+            {
+                button.x = 570;
+                button.y = 82;
+            }
             button.addEventListener(Event.COMPLETE, button_mouseUpHandler);
             addChild(button);
             button = null;
