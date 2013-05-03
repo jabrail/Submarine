@@ -87,8 +87,12 @@ public class Asset {
     public static const LevelCompleteView : Class;
     [Embed(source="/images/preloaders/preload.PNG")]
     public static const PreloaderFon : Class;
+
     [Embed(source="/images/preloaders/load.PNG")]
     public static const PreloaderProgres : Class;
+
+    [Embed(source="/images/ship/Sub_vint.swf" ,mimeType="application/octet-stream")]
+    public static const Vint : Class;
 
 
     public function Asset() {

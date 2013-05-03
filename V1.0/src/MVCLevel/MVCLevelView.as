@@ -31,6 +31,7 @@ import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.text.TextFormat;
 import flash.utils.ByteArray;
+import flash.utils.Timer;
 
 import implementation.Destroyer;
 
@@ -84,7 +85,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
     private var coins_numchildren : Array = new Array();
     private var textPoint : TextField = new TextField();
     private var buble: BubbleView;
-    private var space:Space = new Space(new Vec2(0, 100));
+    private var space:Space = new Space(new Vec2(0, 0));
     private var body : Body;
     private var body_coin : Body;
     private var shiptype : CbType = new CbType();
@@ -98,7 +99,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
     private var sharedobj :  SharedObject;
     private var point : int = 0;
     private var movie : MovieClip   = new MovieClip();
-    private var loadVint : Loader;
+    private var loadVint : Loader = new Loader();
     private var pauseViewStatus : Boolean = false;
     private var bonusMagnitstaus : Boolean = false;
     public var mapLength : Number=0;
@@ -109,6 +110,9 @@ public class MVCLevelView extends Sprite  implements Destroyer
     private var cache : ImgBodyCache;
     private var bodytempore : Body;
     public var soundManager : SoundManager;
+    private var timer : Timer = new Timer(50);
+    private var impulseCount : int = 0;
+
 
 
     public var debug:Debug = new ShapeDebug(800, 600, 0xFFFFFF);
@@ -118,6 +122,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
 
     public function MVCLevelView(cache : ImgBodyCache)
     {
+
         new Boot();
 
         this.cache = cache
@@ -150,6 +155,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
 
     public function update(point : int) : void
     {
+        movie.play();
         if (pauseViewStatus)
         {
             for (var i:int =0; i <layer_coins.numChildren;i++)
@@ -183,23 +189,49 @@ public class MVCLevelView extends Sprite  implements Destroyer
         }
         _graphicUpdate(body);
 
+        trace(body.angularVel);
+
+
+            body.applyImpulse(new Vec2(200,0),new Vec2(0,body.bounds.height/2));
 
         if (up!=0)
         {
+            body.angularVel -= Math.PI/5;
+
+
+            /*
+
+            if (body.velocity.y>-150)
+            {
          //   body.velocity.set(new Vec2(0,-valueUp));
-            body.applyImpulse(new Vec2(0,-valueUp));
-            movie.play();
+                body.force.add(new Vec2(0,-100));
+           //     body.force.muleq(100);
+                  body.applyImpulse(new Vec2(0,-valueUp));
+          //      movie.play();
+            *//*impulseCount+=valueUp;
+            trace('velocity='+body.velocity);
+            trace('impulse='+impulseCount);
+            *//*}
+            else {
+          //      body.velocity.set(new Vec2(0,-140));
+          //      body.applyImpulse(new Vec2(0,valueUp));
+            }*/
 
         }
         else
         {
-            movie.stop();
+ //           movie.stop();
 //            body.velocity.set(new Vec2(0,150));
+            body.angularVel += Math.PI/5;
 
         }
+        if (body.angularVel>1.5)
+            body.angularVel = 0;
+        if (body.angularVel<-1.5)
+            body.angularVel = 0;
         if (body.position.x<100)
         {
-//            body.applyImpulse(new Vec2(1000,0),new Vec2(body.bounds.width/2,body.bounds.height/2));
+            body.applyImpulse(new Vec2(200,0),new Vec2(body.bounds.width/2,body.bounds.height/2));
             speed_stone=6;
             if (body.position.x<0)
                 life=-1;
@@ -401,6 +433,8 @@ public class MVCLevelView extends Sprite  implements Destroyer
         mapStatus.x = 400;
         mapStatus.y = 30;
         addChild(mapStatus);
+        loadVint.loadBytes( new Asset.Vint() as ByteArray );
+        loadVint.contentLoaderInfo.addEventListener(Event.INIT, onSwfLoaded_loadVint);
     }
     public function shipUp(value : Number) :void
     {
@@ -409,6 +443,8 @@ public class MVCLevelView extends Sprite  implements Destroyer
         micBlock.graphics.clear();
         micBlock.graphics.beginFill(0x00ff00,0.6);
         micBlock.graphics.drawRoundRect(0,0,5,value,5);
+//        body.rotation = -Math.PI/10;
+
         this.valueUp = value;
     }
     public function shipDown(value : Number) :void
@@ -416,6 +452,8 @@ public class MVCLevelView extends Sprite  implements Destroyer
         micBlock.graphics.clear();
         micBlock.graphics.beginFill(0x00ff00,0.6);
         micBlock.graphics.drawRoundRect(0,0,5,value,5);
+        body.constraintsImpulse();
+        impulseCount=0;
         up = 0;
     }
 
@@ -622,7 +660,7 @@ public class MVCLevelView extends Sprite  implements Destroyer
         movie = loadVint.content as MovieClip;
         movie.stop();
         movie.x= -33;
-        movie.y=24;
+        movie.y=25;
         body.userData.graphic.addChild(movie);
     }
     private function addButton() : void {
@@ -643,14 +681,14 @@ public class MVCLevelView extends Sprite  implements Destroyer
         ground_buttom.space = space;
 
         var right_barier:Body = new Body(BodyType.STATIC); // Земля
-        right_barier.shapes.add(new Polygon(Polygon.rect(0, 300, 310, 600), Material.ice(),new InteractionFilter(0x000000011, 0x000000001)));
+        right_barier.shapes.add(new Polygon(Polygon.rect(300, 0, 10, 600), Material.ice(),new InteractionFilter(0x000000101, 0x001000000)));
         var mater11 : Material = new Material(0,0.1,2,1);
         right_barier.setShapeMaterials(mater11);
         right_barier.space = space;
 
 
         addChild(debug.display);
-        body.setShapeFilters(new InteractionFilter(0x000000011, 0x000000001));
+        body.setShapeFilters(new InteractionFilter(0x001000001, 0x000000001));
 
         var beginCollideListener:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, otherObject, addCollisionListener);
         var beginCollideListenerBonus:InteractionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, shiptype, bonusObject, addCollisionListenerBonus);

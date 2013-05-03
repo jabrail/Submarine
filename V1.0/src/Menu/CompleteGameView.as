@@ -97,7 +97,7 @@ public class CompleteGameView extends Sprite implements Destroyer{
     {
         if (Vk.flashVars['viewer_id']!=155685417)
         {
-           if (ModalContainer.levelName=='Location_1/level_6_6_2')
+           if (ModalContainer.levelName=='Location_1/level_6_6_4')
             {
                 SharedTracker.tracker.trackEvent("/play_again","/play_again");
                 this.dispatchEvent(new Event(Myevent.MAIN_MENU));
@@ -111,7 +111,7 @@ public class CompleteGameView extends Sprite implements Destroyer{
         }
         else
         {
-        if (ModalContainer.levelName=='Location_1/level_6_6_2')
+        if (ModalContainer.levelName=='Location_1/level_6_6_4')
         {
             this.dispatchEvent(new Event(Myevent.MAIN_MENU));
         }

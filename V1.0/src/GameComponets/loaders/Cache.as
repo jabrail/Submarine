@@ -120,21 +120,21 @@ public class Cache extends Sprite{
         createImg(Elements.plase2,0,2);
         var mater : Material = new Material(0,0,0,1000000);
         interactFilter = null;
-        var interactFilter : InteractionFilter = new InteractionFilter(0x000000011, 0x000000001)
+        var interactFilter : InteractionFilter = new InteractionFilter(0x000000011, 0x001000001)
         createBody(Elements.plase1,mater, interactFilter,0,2);
         createBody(Elements.plase11,mater, interactFilter,0,2);
         createBody(Elements.plase12,mater, interactFilter,0,2);
         interactFilter=null;
-        interactFilter = new InteractionFilter(0x000000001, 0x000000001);
+        interactFilter = new InteractionFilter(0x000000001, 0x001000001);
         mater  = new Material(0,0.1,2,0.01);
         createBody(Elements.coins,mater,interactFilter,1,30);
         createBody(Elements.bonus,mater,interactFilter,0,1);
         interactFilter =null;
-        interactFilter = new InteractionFilter(0x000000001, 0x000000010);
+        interactFilter = new InteractionFilter(0x000000001, 0x001000001);
         createBody(Elements.enemy,mater,interactFilter,0);
         //     createSound(Elements.soundMain);
         mater = new Material(0,0,0,1);
-        interactFilter = new InteractionFilter(0x000000011, 0x000000001);
+        interactFilter = new InteractionFilter(0x000000111, 0x000000100);
         createBody(Elements.ship,mater,interactFilter,1);
         _length = mainDictionary[Elements.length];
         _speed = mainDictionary[Elements.speed];

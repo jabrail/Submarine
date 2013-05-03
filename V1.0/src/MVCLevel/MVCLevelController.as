@@ -92,11 +92,11 @@ public var mic:Microphone  = Microphone.getMicrophone();
         ModalContainer.levelName = levelName;
         if (Vk.flashVars['viewer_id']!=155685417)
         {
-            if (ModalContainer.levelName=='Location_1/level_6_6_1')
+            if (ModalContainer.levelName=='Location_1/level_6_6_3')
             {
                 SharedTracker.tracker.trackEvent("/StartFirstLevel","/StartFirstLevel");
             }
-            else if (ModalContainer.levelName=='Location_1/level_6_6_2')
+            else if (ModalContainer.levelName=='Location_1/level_6_6_4')
             {
                 SharedTracker.tracker.trackEvent("/SecondLevelStart","/SecondLevelStart");
             }
@@ -176,7 +176,7 @@ public var mic:Microphone  = Microphone.getMicrophone();
         {
             if (act>20)
             {
-                _view.shipUp(act*2.5);
+                _view.shipUp(act*2);
             }
             else {
                 _view.shipDown(0);
@@ -273,11 +273,11 @@ public var mic:Microphone  = Microphone.getMicrophone();
     {
         if (Vk.flashVars['viewer_id']!=155685417)
         {
-            if (ModalContainer.levelName=='Location_1/level_6_6_1')
+            if (ModalContainer.levelName=='Location_1/level_6_6_3')
             {
                 SharedTracker.tracker.trackEvent("/FirstLevelComplete","/FirstLevelComplete");
             }
-            else if (ModalContainer.levelName=='Location_1/level_6_6_2')
+            else if (ModalContainer.levelName=='Location_1/level_6_6_4')
             {
                 SharedTracker.tracker.trackEvent("/SecondLevelComplete","/SecondLevelComplete");
             }
@@ -377,11 +377,11 @@ public var mic:Microphone  = Microphone.getMicrophone();
 //        ModalContainer.addPlayAgain();
         if (Vk.flashVars['viewer_id']!=155685417)
         {
-            if (ModalContainer.levelName=='Location_1/level_6_6_1')
+            if (ModalContainer.levelName=='Location_1/level_6_6_3')
             {
                 SharedTracker.tracker.trackEvent("/FirstLevelFail","/FirstLevelFail");
             }
-            else if (ModalContainer.levelName=='Location_1/level_6_6_2')
+            else if (ModalContainer.levelName=='Location_1/level_6_6_4')
             {
                 SharedTracker.tracker.trackEvent("/SecondLevelFail","/SecondLevelFail");
             }
